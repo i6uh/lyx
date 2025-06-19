@@ -684,7 +684,7 @@
                 date: new Date().toISOString().split('T')[0],
                 icon: "🖼️",
                 url: "https://example.com/logo.png",
-                description: "شعار الشركة الرسمي"
+                description: "1"
             }
         ];
 
@@ -692,7 +692,7 @@
         let currentFilter = 'all';
         let isAdminLoggedIn = false;
         let nextFileId = sampleFiles.length > 0 ? Math.max(...sampleFiles.map(f => f.id)) + 1 : 4;
-        const adminPassword = "admin123"; // يمكنك تغيير كلمة المرور هنا
+        const adminPassword = "********"; 
 
         // دالة لحفظ الملفات في localStorage
         function saveFilesToStorage() {
