@@ -652,6 +652,53 @@
             <button class="page-btn" onclick="changePage(1)">التالي »</button>
         </div>
     </div>
+	    <div class="admin-access" style="bottom: 120px; right: 30px;">
+        <button class="admin-btn" onclick="toggleExtraButtons()">🔗 روابط إضافية</button>
+    </div>
+
+    <div id="extraButtons" style="display: none; position: fixed; bottom: 180px; right: 30px; z-index: 100;">
+        <button class="admin-btn" onclick="window.open('https://discord.gg/gx57dbSXJ2', '_blank')" 
+                style="margin-bottom: 10px; background: linear-gradient(135deg, #5865F2, #7289DA);">
+            Discord
+        </button>
+        <a href="https://507.world/" target="_blank" 
+           class="admin-btn" 
+           style="display: block; text-align: center; text-decoration: none;
+                  background: linear-gradient(135deg, #7289DA, #5865F2);">
+            Owner Info
+        </a>
+    </div>
+	<style>
+  .clickable-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('https://files.catbox.moe/ozi6rj.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+  }
+  .clickable-bg a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<div class="clickable-bg">
+  <a href="رابط_الوجهة"></a>
+</div>
+
+    <script>
+        // دالة تبديل الأزرار الإضافية
+        function toggleExtraButtons() {
+            const extraButtons = document.getElementById('extraButtons');
+            extraButtons.style.display = extraButtons.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
 
     <script>
         // تحميل الملفات من localStorage أو استخدام الملفات الافتراضية
@@ -684,7 +731,7 @@
                 date: new Date().toISOString().split('T')[0],
                 icon: "🖼️",
                 url: "https://example.com/logo.png",
-                description: "1"
+                description: "شعار الشركة الرسمي"
             }
         ];
 
@@ -692,7 +739,7 @@
         let currentFilter = 'all';
         let isAdminLoggedIn = false;
         let nextFileId = sampleFiles.length > 0 ? Math.max(...sampleFiles.map(f => f.id)) + 1 : 4;
-        const adminPassword = "********"; 
+        const adminPassword = "admin123"; // يمكنك تغيير كلمة المرور هنا
 
         // دالة لحفظ الملفات في localStorage
         function saveFilesToStorage() {
