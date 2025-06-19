@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LYX - مدير الملفات</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffffff, #b8b8ff, #8a2be2, #4169e1, #1e90ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .subtitle {
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 20px 60px 20px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            color: #ffffff;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 12px 40px rgba(138, 43, 226, 0.5);
+            transform: translateY(-2px);
+            border-color: #8a2be2;
+        }
+
+        .search-box::placeholder {
+            color: #b0b0b0;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8a2be2;
+            font-size: 20px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(30, 30, 30, 0.8);
+            color: #e8e8e8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+            border-color: transparent;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .file-card {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(40, 40, 40, 0.9));
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+            border: 2px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .file-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.3);
+            border-color: rgba(138, 43, 226, 0.5);
+        }
+
+        .file-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8a2be2, #4169e1, #1e90ff, #ffffff);
+        }
+
+        .file-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .file-icon.pdf { color: #ff4757; }
+        .file-icon.doc { color: #4169e1; }
+        .file-icon.img { color: #ffa502; }
+        .file-icon.video { color: #8a2be2; }
+        .file-icon.audio { color: #1e90ff; }
+        .file-icon.zip { color: #747d8c; }
+
+        .file-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .file-info {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1a1a2e, #8a2be2, #4169e1);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5);
+            background: linear-gradient(135deg, #8a2be2, #4169e1, #1e90ff);
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .page-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(30, 30, 30, 0.8);
+            color: #e8e8e8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            transform: translateY(-2px);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .files-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(30, 30, 30, 0.95));
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            z-index: 1000;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        .admin-header h3 {
+            margin: 0;
+            color: #8a2be2;
+        }
+
+        .close-admin-btn {
+            background: none;
+            border: none;
+            color: #ff4757;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-admin-btn:hover {
+            background: rgba(255, 71, 87, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .add-file-form, .edit-files-section {
+            margin-bottom: 30px;
+        }
+
+        .add-file-form h4, .edit-files-section h4 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            background: rgba(40, 40, 40, 0.8);
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-input:focus {
+            outline: none;
+            border-color: #8a2be2;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .admin-input::placeholder {
+            color: #b0b0b0;
+        }
+
+        .add-file-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-file-btn:hover {
+            background: linear-gradient(135deg, #4169e1, #1e90ff);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        .admin-file-item {
+            background: rgba(50, 50, 50, 0.8);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-file-info {
+            flex: 1;
+            color: #ffffff;
+        }
+
+        .admin-file-info h5 {
+            margin: 0 0 5px 0;
+            color: #8a2be2;
+        }
+
+        .admin-file-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn {
+            background: #4169e1;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #1e90ff;
+            transform: translateY(-1px);
+        }
+
+        .delete-btn {
+            background: #ff4757;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #ff3742;
+            transform: translateY(-1px);
+        }
+
+        /* Login Modal Styles */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-content {
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(30, 30, 30, 0.95));
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            text-align: center;
+            min-width: 350px;
+        }
+
+        .login-content h3 {
+            color: #8a2be2;
+            margin-bottom: 25px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            background: rgba(40, 40, 40, 0.8);
+            color: #ffffff;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #8a2be2;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .login-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .login-btn, .cancel-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            color: white;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #4169e1, #1e90ff);
+            transform: translateY(-2px);
+        }
+
+        .cancel-btn {
+            background: rgba(116, 125, 140, 0.8);
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background: rgba(116, 125, 140, 1);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #ff4757;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .admin-access {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+
+        .admin-btn {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+        }
+
+        .admin-btn:hover {
+            background: linear-gradient(135deg, #4169e1, #1e90ff);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(138, 43, 226, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles" id="particles"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">Lyx Team</h1>
+            <p class="subtitle">AbuDoSr - aBuShehRi</p>
+        </header>
+
+        <!-- Admin Panel -->
+        <div class="admin-panel" id="adminPanel" style="display: none;">
+            <div class="admin-header">
+                <h3>🔧 لوحة الإدارة</h3>
+                <button class="close-admin-btn" onclick="closeAdminPanel()">✕</button>
+            </div>
+            
+            <div class="add-file-form">
+                <h4>➕ إضافة ملف جديد</h4>
+                <input type="text" id="fileName" placeholder="اسم الملف" class="admin-input">
+                <select id="fileType" class="admin-input">
+                    <option value="doc">Discord</option>
+                    <option value="img">soon</option>
+                    <option value="audio">html</option>
+                    <option value="zip">tools</option>
+                </select>
+                <input type="text" id="fileSize" placeholder="حجم الملف (مثل: 2.5 MB)" class="admin-input">
+                <input type="text" id="fileUrl" placeholder="رابط الملف (URL)" class="admin-input">
+                <input type="text" id="fileDescription" placeholder="وصف الملف (اختياري)" class="admin-input">
+                <button class="add-file-btn" onclick="addNewFile()">إضافة الملف</button>
+            </div>
+
+            <div class="edit-files-section">
+                <h4>✏️ تعديل الملفات الموجودة</h4>
+                <div class="files-list" id="adminFilesList">
+                    <!-- Admin files list will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div class="login-modal" id="loginModal" style="display: none;">
+            <div class="login-content">
+                <h3>🔐 تسجيل دخول الإدارة</h3>
+                <input type="password" id="adminPassword" placeholder="كلمة المرور" class="login-input">
+                <div class="login-buttons">
+                    <button class="login-btn" onclick="checkPassword()">دخول</button>
+                    <button class="cancel-btn" onclick="closeLoginModal()">إلغاء</button>
+                </div>
+                <div class="error-message" id="errorMessage" style="display: none;">كلمة المرور غير صحيحة!</div>
+            </div>
+        </div>
+
+        <!-- Admin Access Button -->
+        <div class="admin-access">
+            <button class="admin-btn" onclick="showLoginModal()">🔧 إدارة الملفات</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="ابحث عن الملفات..." id="searchInput">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-type="all">All Files</button>
+            <button class="filter-btn" data-type="audio">Html Files</button>
+            <button class="filter-btn" data-type="zip">Tool Files</button>
+            <button class="filter-btn" data-type="doc">Discord Files</button>
+            <button class="filter-btn" data-type="img">Soon</button>
+
+        </div>
+
+        <div class="files-grid" id="filesGrid">
+            <!-- Files will be populated here -->
+        </div>
+
+        <div class="pagination">
+            <button class="page-btn" onclick="changePage(-1)">« السابق</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn" onclick="changePage(1)">التالي »</button>
+        </div>
+    </div>
+
+    <script>
+        // تحميل الملفات من localStorage أو استخدام الملفات الافتراضية
+        let sampleFiles = JSON.parse(localStorage.getItem('lyx-files')) || [
+            {
+                id: 1,
+                name: "تقرير المشروع النهائي.pdf",
+                type: "pdf",
+                size: "2.5 MB",
+                date: new Date().toISOString().split('T')[0],
+                icon: "📄",
+                url: "https://example.com/report.pdf",
+                description: "تقرير شامل عن المشروع"
+            },
+            {
+                id: 2,
+                name: "عرض تقديمي.pptx",
+                type: "doc",
+                size: "5.2 MB",
+                date: new Date().toISOString().split('T')[0],
+                icon: "📊",
+                url: "https://example.com/presentation.pptx",
+                description: "عرض تقديمي للمشروع"
+            },
+            {
+                id: 3,
+                name: "صورة الشعار.png",
+                type: "img",
+                size: "890 KB",
+                date: new Date().toISOString().split('T')[0],
+                icon: "🖼️",
+                url: "https://example.com/logo.png",
+                description: "شعار الشركة الرسمي"
+            }
+        ];
+
+        let currentFiles = [...sampleFiles];
+        let currentFilter = 'all';
+        let isAdminLoggedIn = false;
+        let nextFileId = sampleFiles.length > 0 ? Math.max(...sampleFiles.map(f => f.id)) + 1 : 4;
+        const adminPassword = "admin123"; // يمكنك تغيير كلمة المرور هنا
+
+        // دالة لحفظ الملفات في localStorage
+        function saveFilesToStorage() {
+            localStorage.setItem('lyx-files', JSON.stringify(sampleFiles));
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = Math.random() * 10 + 5 + 'px';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Render files
+        function renderFiles(files) {
+            const grid = document.getElementById('filesGrid');
+            grid.innerHTML = '';
+            
+            files.forEach((file, index) => {
+                const fileCard = document.createElement('div');
+                fileCard.className = 'file-card';
+                fileCard.style.animationDelay = (index * 0.1) + 's';
+                
+                fileCard.innerHTML = `
+                    <div class="file-icon ${file.type}">${file.icon}</div>
+                    <div class="file-title">${file.name}</div>
+                    <div class="file-info">الحجم: ${file.size} • التاريخ: ${file.date}</div>
+                    ${file.description ? `<div class="file-description" style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 10px;">${file.description}</div>` : ''}
+                    <button class="download-btn" onclick="downloadFile(${file.id})">
+                        الانتقال إلى الملف ↗
+                    </button>
+                `;
+                
+                grid.appendChild(fileCard);
+            });
+        }
+
+        // Filter files
+        function filterFiles(type) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            currentFilter = type;
+            if (type === 'all') {
+                currentFiles = [...sampleFiles];
+            } else {
+                currentFiles = sampleFiles.filter(file => file.type === type);
+            }
+            renderFiles(currentFiles);
+        }
+
+        // Search files
+        function searchFiles(query) {
+            const filteredFiles = sampleFiles.filter(file => 
+                file.name.toLowerCase().includes(query.toLowerCase()) &&
+                (currentFilter === 'all' || file.type === currentFilter)
+            );
+            renderFiles(filteredFiles);
+        }
+
+        // Open file URL
+        function downloadFile(fileId) {
+            const file = sampleFiles.find(f => f.id === fileId);
+            if (!file || !file.url) {
+                alert('لا يوجد رابط متاح لهذا الملف');
+                return;
+            }
+            window.open(file.url, '_blank');
+        }
+
+        // Change page
+        function changePage(direction) {
+            // Simulate pagination
+            console.log('تغيير الصفحة:', direction);
+        }
+
+        // Admin Functions
+        function showLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('adminPassword').focus();
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === adminPassword) {
+                isAdminLoggedIn = true;
+                closeLoginModal();
+                showAdminPanel();
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        function showAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'block';
+            renderAdminFilesList();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'none';
+            isAdminLoggedIn = false;
+        }
+
+        function addNewFile() {
+            const fileName = document.getElementById('fileName').value;
+            const fileType = document.getElementById('fileType').value;
+            const fileSize = document.getElementById('fileSize').value;
+            const fileUrl = document.getElementById('fileUrl').value;
+            const fileDescription = document.getElementById('fileDescription').value;
+
+            if (!fileName || !fileSize || !fileUrl) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+
+            const newFile = {
+                id: nextFileId++,
+                name: fileName,
+                type: fileType,
+                size: fileSize,
+                date: new Date().toISOString().split('T')[0],
+                icon: getFileIcon(fileName),
+                url: fileUrl,
+                description: fileDescription
+            };
+
+            sampleFiles.unshift(newFile);
+            currentFiles = [...sampleFiles];
+            renderFiles(currentFiles);
+            renderAdminFilesList();
+            saveFilesToStorage();
+
+            // Clear form
+            document.getElementById('fileName').value = '';
+            document.getElementById('fileSize').value = '';
+            document.getElementById('fileUrl').value = '';
+            document.getElementById('fileDescription').value = '';
+
+            alert('تم إضافة الملف بنجاح!');
+        }
+
+        function renderAdminFilesList() {
+            const adminList = document.getElementById('adminFilesList');
+            adminList.innerHTML = '';
+
+            sampleFiles.forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'admin-file-item';
+                fileItem.innerHTML = `
+                    <div class="admin-file-info">
+                        <h5>${file.name}</h5>
+                        <p>النوع: ${file.type} • الحجم: ${file.size}</p>
+                        <p>الرابط: ${file.url}</p>
+                        ${file.description ? `<p>الوصف: ${file.description}</p>` : ''}
+                    </div>
+                    <div class="admin-file-actions">
+                        <button class="edit-btn" onclick="editFile(${file.id})">تعديل</button>
+                        <button class="delete-btn" onclick="deleteFile(${file.id})">حذف</button>
+                    </div>
+                `;
+                adminList.appendChild(fileItem);
+            });
+        }
+
+        function editFile(fileId) {
+            const file = sampleFiles.find(f => f.id === fileId);
+            if (!file) return;
+
+            const newName = prompt('اسم الملف الجديد:', file.name);
+            if (newName && newName !== file.name) {
+                file.name = newName;
+            }
+
+            const newSize = prompt('حجم الملف الجديد:', file.size);
+            if (newSize && newSize !== file.size) {
+                file.size = newSize;
+            }
+
+            const newUrl = prompt('رابط الملف الجديد:', file.url);
+            if (newUrl && newUrl !== file.url) {
+                file.url = newUrl;
+            }
+
+            const newDescription = prompt('وصف الملف الجديد:', file.description || '');
+            if (newDescription !== null) {
+                file.description = newDescription;
+            }
+
+            currentFiles = [...sampleFiles];
+            renderFiles(currentFiles);
+            renderAdminFilesList();
+            saveFilesToStorage();
+            alert('تم تحديث الملف بنجاح!');
+        }
+
+        function deleteFile(fileId) {
+            if (confirm('هل أنت متأكد من حذف هذا الملف؟')) {
+                const index = sampleFiles.findIndex(f => f.id === fileId);
+                if (index > -1) {
+                    sampleFiles.splice(index, 1);
+                    currentFiles = [...sampleFiles];
+                    renderFiles(currentFiles);
+                    renderAdminFilesList();
+                    saveFilesToStorage();
+                    alert('تم حذف الملف بنجاح!');
+                }
+            }
+        }
+
+        // Handle Enter key in password field
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                if (document.getElementById('loginModal').style.display === 'flex') {
+                    checkPassword();
+                }
+            }
+        });
+
+        // Helper functions
+        function getFileType(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            if (['pdf'].includes(ext)) return 'pdf';
+            if (['doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'].includes(ext)) return 'doc';
+            if (['jpg', 'jpeg', 'png', 'gif', 'bmp'].includes(ext)) return 'img';
+            if (['mp4', 'avi', 'mov', 'wmv'].includes(ext)) return 'video';
+            if (['mp3', 'wav', 'ogg'].includes(ext)) return 'audio';
+            if (['zip', 'rar', '7z'].includes(ext)) return 'zip';
+            return 'doc';
+        }
+
+        function getFileIcon(filename) {
+            const type = getFileType(filename);
+            const icons = {
+                pdf: '📄',
+                doc: '📊',
+                img: '🖼️',
+                video: '🎬',
+                audio: '🎵',
+                zip: '📦'
+            };
+            return icons[type] || '📄';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchFiles(e.target.value);
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                filterFiles(e.target.dataset.type);
+            });
+        });
+
+        // Initialize
+        window.addEventListener('load', function() {
+            createParticles();
+            renderFiles(currentFiles);
+        });
+    </script>
+</body>
+</html>
