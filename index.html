@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -1024,5 +1025,45 @@
             renderFiles(currentFiles);
         });
     </script>
+<!-- استيراد مكتبات Firebase -->
+<script type="module">
+  // استيراد الوظائف من Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+  // إعدادات Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyD6QUk32i4F4SeQhhZrrlxDj8SsVIcAAoE",
+    authDomain: "lyxs-f2b62.firebaseapp.com",
+    projectId: "lyxs-f2b62",
+    storageBucket: "lyxs-f2b62.firebasestorage.app",
+    messagingSenderId: "400754312224",
+    appId: "1:400754312224:web:73d9668718ff3647ed2845",
+    measurementId: "G-06FECZZL9M"
+  };
+
+  // تهيئة Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // وظيفة لجلب البيانات وعرضها
+  async function loadFiles() {
+    const listElement = document.getElementById('filesList');
+    try {
+      const filesCol = collection(db, 'files'); // اسم المجموعة
+      const fileSnapshot = await getDocs(filesCol);
+      fileSnapshot.forEach(doc => {
+        const li = document.createElement('li');
+        li.textContent = JSON.stringify(doc.data()); // عرض البيانات كنص
+        listElement.appendChild(li);
+      });
+    } catch (e) {
+      console.error('خطأ في جلب البيانات:', e);
+    }
+  }
+
+  // استدعاء الدالة عند تحميل الصفحة
+  window.onload = loadFiles;
+</script>
 </body>
 </html>
