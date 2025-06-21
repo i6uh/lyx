@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -14,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+            background: linear-gradient(135deg, #0d0d1a 0%, #0f1728 25%, #0a1f3a 50%, #2a1c45 75%, #4a0672 100%);
             min-height: 100vh;
             color: #e8e8e8;
             overflow-x: hidden;
@@ -60,19 +59,19 @@
             border: none;
             border-radius: 50px;
             font-size: 18px;
-            background: rgba(30, 30, 30, 0.9);
+            background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
             transition: all 0.3s ease;
             color: #ffffff;
-            border: 2px solid rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(74, 6, 114, 0.4);
         }
 
         .search-box:focus {
             outline: none;
-            box-shadow: 0 12px 40px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 12px 40px rgba(74, 6, 114, 0.7);
             transform: translateY(-2px);
-            border-color: #8a2be2;
+            border-color: #4a0672;
         }
 
         .search-box::placeholder {
@@ -84,7 +83,7 @@
             right: 25px;
             top: 50%;
             transform: translateY(-50%);
-            color: #8a2be2;
+            color: #4a0672;
             font-size: 20px;
         }
 
@@ -101,18 +100,18 @@
             padding: 12px 24px;
             border: none;
             border-radius: 25px;
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(15, 15, 15, 0.9);
             color: #e8e8e8;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(74, 6, 114, 0.4);
         }
 
         .filter-btn:hover, .filter-btn.active {
-            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            background: linear-gradient(135deg, #4a0672, #2a1c45);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 8px 25px rgba(74, 6, 114, 0.5);
             border-color: transparent;
         }
 
@@ -124,22 +123,22 @@
         }
 
         .file-card {
-            background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(40, 40, 40, 0.9));
+            background: linear-gradient(145deg, rgba(15, 15, 15, 0.98), rgba(25, 25, 25, 0.95));
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
             transition: all 0.3s ease;
             backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.6s ease-out;
-            border: 2px solid rgba(138, 43, 226, 0.2);
+            border: 2px solid rgba(74, 6, 114, 0.3);
         }
 
         .file-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.3);
-            border-color: rgba(138, 43, 226, 0.5);
+            box-shadow: 0 20px 50px rgba(74, 6, 114, 0.4);
+            border-color: rgba(74, 6, 114, 0.6);
         }
 
         .file-card::before {
@@ -149,7 +148,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #8a2be2, #4169e1, #1e90ff, #ffffff);
+            background: linear-gradient(90deg, #4a0672, #2a1c45, #0a1f3a, #ffffff);
         }
 
         .file-icon {
@@ -178,25 +177,31 @@
             margin-bottom: 15px;
         }
 
+        .file-description {
+            color: #b0b0b0;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
         .download-btn {
             width: 100%;
             padding: 15px;
             border: none;
             border-radius: 12px;
-            background: linear-gradient(135deg, #1a1a2e, #8a2be2, #4169e1);
+            background: linear-gradient(135deg, #0d0d1a, #4a0672, #2a1c45);
             color: white;
             font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 4px 15px rgba(74, 6, 114, 0.4);
         }
 
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5);
-            background: linear-gradient(135deg, #8a2be2, #4169e1, #1e90ff);
+            box-shadow: 0 8px 25px rgba(74, 6, 114, 0.6);
+            background: linear-gradient(135deg, #4a0672, #2a1c45, #0a1f3a);
         }
 
         .download-btn::before {
@@ -226,19 +231,19 @@
             padding: 12px 20px;
             border: none;
             border-radius: 10px;
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(15, 15, 15, 0.9);
             color: #e8e8e8;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(74, 6, 114, 0.4);
         }
 
         .page-btn:hover, .page-btn.active {
-            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            background: linear-gradient(135deg, #4a0672, #2a1c45);
             transform: translateY(-2px);
             border-color: transparent;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 4px 15px rgba(74, 6, 114, 0.5);
         }
 
         @keyframes fadeInDown {
@@ -275,14 +280,20 @@
 
         .particle {
             position: absolute;
-            background: rgba(138, 43, 226, 0.1);
+            background: rgba(74, 6, 114, 0.15);
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 0.8;
+            }
         }
 
         @media (max-width: 768px) {
@@ -300,332 +311,133 @@
             }
         }
 
-        /* Admin Panel Styles */
-        .admin-panel {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(30, 30, 30, 0.95));
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(138, 43, 226, 0.3);
-            z-index: 1000;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            color: #ffffff;
-        }
-
-        .admin-header h3 {
-            margin: 0;
-            color: #8a2be2;
-        }
-
-        .close-admin-btn {
-            background: none;
-            border: none;
-            color: #ff4757;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .close-admin-btn:hover {
-            background: rgba(255, 71, 87, 0.2);
-            transform: rotate(90deg);
-        }
-
-        .add-file-form, .edit-files-section {
-            margin-bottom: 30px;
-        }
-
-        .add-file-form h4, .edit-files-section h4 {
-            color: #ffffff;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(138, 43, 226, 0.3);
-        }
-
-        .admin-input {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            border: 2px solid rgba(138, 43, 226, 0.3);
-            border-radius: 10px;
-            background: rgba(40, 40, 40, 0.8);
-            color: #ffffff;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .admin-input:focus {
-            outline: none;
-            border-color: #8a2be2;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
-        }
-
-        .admin-input::placeholder {
-            color: #b0b0b0;
-        }
-
-        .add-file-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #8a2be2, #4169e1);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .add-file-btn:hover {
-            background: linear-gradient(135deg, #4169e1, #1e90ff);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
-        }
-
-        .admin-file-item {
-            background: rgba(50, 50, 50, 0.8);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .admin-file-info {
-            flex: 1;
-            color: #ffffff;
-        }
-
-        .admin-file-info h5 {
-            margin: 0 0 5px 0;
-            color: #8a2be2;
-        }
-
-        .admin-file-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .edit-btn, .delete-btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .edit-btn {
-            background: #4169e1;
-            color: white;
-        }
-
-        .edit-btn:hover {
-            background: #1e90ff;
-            transform: translateY(-1px);
-        }
-
-        .delete-btn {
-            background: #ff4757;
-            color: white;
-        }
-
-        .delete-btn:hover {
-            background: #ff3742;
-            transform: translateY(-1px);
-        }
-
-        /* Login Modal Styles */
-        .login-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-content {
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(30, 30, 30, 0.95));
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(138, 43, 226, 0.3);
-            text-align: center;
-            min-width: 350px;
-        }
-
-        .login-content h3 {
-            color: #8a2be2;
-            margin-bottom: 25px;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 2px solid rgba(138, 43, 226, 0.3);
-            border-radius: 10px;
-            background: rgba(40, 40, 40, 0.8);
-            color: #ffffff;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .login-input:focus {
-            outline: none;
-            border-color: #8a2be2;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
-        }
-
-        .login-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .login-btn, .cancel-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, #8a2be2, #4169e1);
-            color: white;
-        }
-
-        .login-btn:hover {
-            background: linear-gradient(135deg, #4169e1, #1e90ff);
-            transform: translateY(-2px);
-        }
-
-        .cancel-btn {
-            background: rgba(116, 125, 140, 0.8);
-            color: white;
-        }
-
-        .cancel-btn:hover {
-            background: rgba(116, 125, 140, 1);
-            transform: translateY(-2px);
-        }
-
-        .error-message {
-            color: #ff4757;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
         .admin-access {
             position: fixed;
-            bottom: 30px;
+            bottom: 50px;
             right: 30px;
             z-index: 100;
         }
 
         .admin-btn {
-            padding: 15px 20px;
-            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            padding: 18px 25px;
+            background: linear-gradient(135deg, #4a0672, #2a1c45);
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(74, 6, 114, 0.4);
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .admin-btn:hover {
-            background: linear-gradient(135deg, #4169e1, #1e90ff);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(138, 43, 226, 0.4);
+            background: linear-gradient(135deg, #2a1c45, #0a1f3a);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(74, 6, 114, 0.6);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .admin-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .admin-btn:hover::before {
+            left: 100%;
+        }
+
+        .admin-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .clickable-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://files.catbox.moe/ozi6rj.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: fadeInBg 0.8s ease-out 0.2s forwards;
+        }
+
+        @keyframes fadeInBg {
+            from {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+            to {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        #extraButtons {
+            position: fixed;
+            bottom: 160px;
+            right: 30px;
+            z-index: 100;
+            display: none;
+            animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #extraButtons.show {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px) scale(0.8);
+            }
+        }
+
+        #extraButtons.hide {
+            animation: slideOutRight 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
         }
     </style>
 </head>
 <body>
     <div class="floating-particles" id="particles"></div>
+    <div class="clickable-bg"></div>
     
     <div class="container">
         <header class="header">
             <h1 class="logo">Lyx Team</h1>
             <p class="subtitle">AbuDoSr - aBuShehRi</p>
         </header>
-
-        <!-- Admin Panel -->
-        <div class="admin-panel" id="adminPanel" style="display: none;">
-            <div class="admin-header">
-                <h3>🔧 لوحة الإدارة</h3>
-                <button class="close-admin-btn" onclick="closeAdminPanel()">✕</button>
-            </div>
-            
-            <div class="add-file-form">
-                <h4>➕ إضافة ملف جديد</h4>
-                <input type="text" id="fileName" placeholder="اسم الملف" class="admin-input">
-                <select id="fileType" class="admin-input">
-                    <option value="doc">Discord</option>
-                    <option value="img">soon</option>
-                    <option value="audio">html</option>
-                    <option value="zip">tools</option>
-                </select>
-                <input type="text" id="fileSize" placeholder="حجم الملف (مثل: 2.5 MB)" class="admin-input">
-                <input type="text" id="fileUrl" placeholder="رابط الملف (URL)" class="admin-input">
-                <input type="text" id="fileDescription" placeholder="وصف الملف (اختياري)" class="admin-input">
-                <button class="add-file-btn" onclick="addNewFile()">إضافة الملف</button>
-            </div>
-
-            <div class="edit-files-section">
-                <h4>✏️ تعديل الملفات الموجودة</h4>
-                <div class="files-list" id="adminFilesList">
-                    <!-- Admin files list will be populated here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Login Modal -->
-        <div class="login-modal" id="loginModal" style="display: none;">
-            <div class="login-content">
-                <h3>🔐 تسجيل دخول الإدارة</h3>
-                <input type="password" id="adminPassword" placeholder="كلمة المرور" class="login-input">
-                <div class="login-buttons">
-                    <button class="login-btn" onclick="checkPassword()">دخول</button>
-                    <button class="cancel-btn" onclick="closeLoginModal()">إلغاء</button>
-                </div>
-                <div class="error-message" id="errorMessage" style="display: none;">كلمة المرور غير صحيحة!</div>
-            </div>
-        </div>
-
-        <!-- Admin Access Button -->
-        <div class="admin-access">
-            <button class="admin-btn" onclick="showLoginModal()">🔧 إدارة الملفات</button>
-        </div>
 
         <div class="search-container">
             <input type="text" class="search-box" placeholder="ابحث عن الملفات..." id="searchInput">
@@ -638,7 +450,6 @@
             <button class="filter-btn" data-type="zip">Tool Files</button>
             <button class="filter-btn" data-type="doc">Discord Files</button>
             <button class="filter-btn" data-type="img">Soon</button>
-
         </div>
 
         <div class="files-grid" id="filesGrid">
@@ -653,98 +464,78 @@
             <button class="page-btn" onclick="changePage(1)">التالي »</button>
         </div>
     </div>
-	    <div class="admin-access" style="bottom: 120px; right: 30px;">
+
+    <!-- الأزرار الإضافية -->
+    <div class="admin-access">
         <button class="admin-btn" onclick="toggleExtraButtons()">🔗 روابط إضافية</button>
     </div>
 
-    <div id="extraButtons" style="display: none; position: fixed; bottom: 180px; right: 30px; z-index: 100;">
+    <div id="extraButtons">
         <button class="admin-btn" onclick="window.open('https://discord.gg/gx57dbSXJ2', '_blank')" 
-                style="margin-bottom: 10px; background: linear-gradient(135deg, #5865F2, #7289DA);">
+                style="background: linear-gradient(135deg, #5865F2, #7289DA);">
             Discord
         </button>
         <a href="https://507.world/" target="_blank" 
            class="admin-btn" 
-           style="display: block; text-align: center; text-decoration: none;
-                  background: linear-gradient(135deg, #7289DA, #5865F2);">
+           style="background: linear-gradient(135deg, #7289DA, #5865F2);">
             Owner Info
         </a>
     </div>
-	<style>
-  .clickable-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: url('https://files.catbox.moe/ozi6rj.png');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.7;
-  }
-  .clickable-bg a {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-</style>
-
-<div class="clickable-bg">
-  <a href="رابط_الوجهة"></a>
-</div>
 
     <script>
-        // دالة تبديل الأزرار الإضافية
-        function toggleExtraButtons() {
-            const extraButtons = document.getElementById('extraButtons');
-            extraButtons.style.display = extraButtons.style.display === 'none' ? 'block' : 'none';
-        }
-    </script>
-
-    <script>
-        // تحميل الملفات من localStorage أو استخدام الملفات الافتراضية
-        let sampleFiles = JSON.parse(localStorage.getItem('lyx-files')) || [
+        // الملفات الأساسية - هنا تضيف الملفات الجديدة
+        const sampleFiles = [
             {
                 id: 1,
-                name: "تقرير المشروع النهائي.pdf",
-                type: "pdf",
+                name: "Discord Bot Setup",
+                type: "doc",
                 size: "2.5 MB",
-                date: new Date().toISOString().split('T')[0],
-                icon: "📄",
-                url: "https://example.com/report.pdf",
-                description: "تقرير شامل عن المشروع"
+                date: "2024-12-20",
+                icon: "🤖",
+                url: "https://discord.gg/gx57dbSXJ2",
+                description: "دليل إعداد بوت الديسكورد"
             },
             {
                 id: 2,
-                name: "عرض تقديمي.pptx",
-                type: "doc",
-                size: "5.2 MB",
-                date: new Date().toISOString().split('T')[0],
-                icon: "📊",
-                url: "https://example.com/presentation.pptx",
-                description: "عرض تقديمي للمشروع"
+                name: "HTML Template",
+                type: "audio",
+                size: "1.2 MB",
+                date: "2024-12-20",
+                icon: "🌐",
+                url: "https://example.com/template.html",
+                description: "قالب HTML جاهز للاستخدام"
             },
             {
                 id: 3,
-                name: "صورة الشعار.png",
-                type: "img",
-                size: "890 KB",
-                date: new Date().toISOString().split('T')[0],
-                icon: "🖼️",
-                url: "https://example.com/logo.png",
-                description: "شعار الشركة الرسمي"
+                name: "Developer Tools",
+                type: "zip",
+                size: "5.7 MB",
+                date: "2024-12-20",
+                icon: "🛠️",
+                url: "https://example.com/tools.zip",
+                description: "مجموعة أدوات المطورين"
             }
         ];
 
         let currentFiles = [...sampleFiles];
         let currentFilter = 'all';
-        let isAdminLoggedIn = false;
-        let nextFileId = sampleFiles.length > 0 ? Math.max(...sampleFiles.map(f => f.id)) + 1 : 4;
-        const adminPassword = "ly******"; 
 
-        // دالة لحفظ الملفات في localStorage
-        function saveFilesToStorage() {
-            localStorage.setItem('lyx-files', JSON.stringify(sampleFiles));
+        // دالة تبديل الأزرار الإضافية مع الأنيميشن
+        function toggleExtraButtons() {
+            const extraButtons = document.getElementById('extraButtons');
+            
+            if (extraButtons.style.display === 'none' || !extraButtons.style.display) {
+                extraButtons.style.display = 'block';
+                extraButtons.classList.remove('hide');
+                extraButtons.classList.add('show');
+            } else {
+                extraButtons.classList.remove('show');
+                extraButtons.classList.add('hide');
+                setTimeout(() => {
+                    extraButtons.style.display = 'none';
+                    extraButtons.classList.remove('hide');
+                }, 400);
+            }
         }
 
         // Create floating particles
@@ -757,7 +548,7 @@
                 particle.style.top = Math.random() * 100 + '%';
                 particle.style.width = particle.style.height = Math.random() * 10 + 5 + 'px';
                 particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
                 particlesContainer.appendChild(particle);
             }
         }
@@ -776,7 +567,7 @@
                     <div class="file-icon ${file.type}">${file.icon}</div>
                     <div class="file-title">${file.name}</div>
                     <div class="file-info">الحجم: ${file.size} • التاريخ: ${file.date}</div>
-                    ${file.description ? `<div class="file-description" style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 10px;">${file.description}</div>` : ''}
+                    ${file.description ? `<div class="file-description">${file.description}</div>` : ''}
                     <button class="download-btn" onclick="downloadFile(${file.id})">
                         الانتقال إلى الملف ↗
                     </button>
@@ -822,190 +613,7 @@
 
         // Change page
         function changePage(direction) {
-            // Simulate pagination
             console.log('تغيير الصفحة:', direction);
-        }
-
-        // Admin Functions
-        function showLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex';
-            document.getElementById('adminPassword').focus();
-        }
-
-        function closeLoginModal() {
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-            document.getElementById('errorMessage').style.display = 'none';
-        }
-
-        function checkPassword() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === adminPassword) {
-                isAdminLoggedIn = true;
-                closeLoginModal();
-                showAdminPanel();
-            } else {
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('adminPassword').value = '';
-            }
-        }
-
-        function showAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'block';
-            renderAdminFilesList();
-        }
-
-        function closeAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'none';
-            isAdminLoggedIn = false;
-        }
-
-        function addNewFile() {
-            const fileName = document.getElementById('fileName').value;
-            const fileType = document.getElementById('fileType').value;
-            const fileSize = document.getElementById('fileSize').value;
-            const fileUrl = document.getElementById('fileUrl').value;
-            const fileDescription = document.getElementById('fileDescription').value;
-
-            if (!fileName || !fileSize || !fileUrl) {
-                alert('يرجى ملء جميع الحقول المطلوبة');
-                return;
-            }
-
-            const newFile = {
-                id: nextFileId++,
-                name: fileName,
-                type: fileType,
-                size: fileSize,
-                date: new Date().toISOString().split('T')[0],
-                icon: getFileIcon(fileName),
-                url: fileUrl,
-                description: fileDescription
-            };
-
-            sampleFiles.unshift(newFile);
-            currentFiles = [...sampleFiles];
-            renderFiles(currentFiles);
-            renderAdminFilesList();
-            saveFilesToStorage();
-
-            // Clear form
-            document.getElementById('fileName').value = '';
-            document.getElementById('fileSize').value = '';
-            document.getElementById('fileUrl').value = '';
-            document.getElementById('fileDescription').value = '';
-
-            alert('تم إضافة الملف بنجاح!');
-        }
-
-        function renderAdminFilesList() {
-            const adminList = document.getElementById('adminFilesList');
-            adminList.innerHTML = '';
-
-            sampleFiles.forEach(file => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'admin-file-item';
-                fileItem.innerHTML = `
-                    <div class="admin-file-info">
-                        <h5>${file.name}</h5>
-                        <p>النوع: ${file.type} • الحجم: ${file.size}</p>
-                        <p>الرابط: ${file.url}</p>
-                        ${file.description ? `<p>الوصف: ${file.description}</p>` : ''}
-                    </div>
-                    <div class="admin-file-actions">
-                        <button class="edit-btn" onclick="editFile(${file.id})">تعديل</button>
-                        <button class="delete-btn" onclick="deleteFile(${file.id})">حذف</button>
-                    </div>
-                `;
-                adminList.appendChild(fileItem);
-            });
-        }
-
-        function editFile(fileId) {
-            const file = sampleFiles.find(f => f.id === fileId);
-            if (!file) return;
-
-            const newName = prompt('اسم الملف الجديد:', file.name);
-            if (newName && newName !== file.name) {
-                file.name = newName;
-            }
-
-            const newSize = prompt('حجم الملف الجديد:', file.size);
-            if (newSize && newSize !== file.size) {
-                file.size = newSize;
-            }
-
-            const newUrl = prompt('رابط الملف الجديد:', file.url);
-            if (newUrl && newUrl !== file.url) {
-                file.url = newUrl;
-            }
-
-            const newDescription = prompt('وصف الملف الجديد:', file.description || '');
-            if (newDescription !== null) {
-                file.description = newDescription;
-            }
-
-            currentFiles = [...sampleFiles];
-            renderFiles(currentFiles);
-            renderAdminFilesList();
-            saveFilesToStorage();
-            alert('تم تحديث الملف بنجاح!');
-        }
-
-        function deleteFile(fileId) {
-            if (confirm('هل أنت متأكد من حذف هذا الملف؟')) {
-                const index = sampleFiles.findIndex(f => f.id === fileId);
-                if (index > -1) {
-                    sampleFiles.splice(index, 1);
-                    currentFiles = [...sampleFiles];
-                    renderFiles(currentFiles);
-                    renderAdminFilesList();
-                    saveFilesToStorage();
-                    alert('تم حذف الملف بنجاح!');
-                }
-            }
-        }
-
-        // Handle Enter key in password field
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                if (document.getElementById('loginModal').style.display === 'flex') {
-                    checkPassword();
-                }
-            }
-        });
-
-        // Helper functions
-        function getFileType(filename) {
-            const ext = filename.split('.').pop().toLowerCase();
-            if (['pdf'].includes(ext)) return 'pdf';
-            if (['doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'].includes(ext)) return 'doc';
-            if (['jpg', 'jpeg', 'png', 'gif', 'bmp'].includes(ext)) return 'img';
-            if (['mp4', 'avi', 'mov', 'wmv'].includes(ext)) return 'video';
-            if (['mp3', 'wav', 'ogg'].includes(ext)) return 'audio';
-            if (['zip', 'rar', '7z'].includes(ext)) return 'zip';
-            return 'doc';
-        }
-
-        function getFileIcon(filename) {
-            const type = getFileType(filename);
-            const icons = {
-                pdf: '📄',
-                doc: '📊',
-                img: '🖼️',
-                video: '🎬',
-                audio: '🎵',
-                zip: '📦'
-            };
-            return icons[type] || '📄';
-        }
-
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
         // Event listeners
@@ -1025,45 +633,5 @@
             renderFiles(currentFiles);
         });
     </script>
-<!-- استيراد مكتبات Firebase -->
-<script type="module">
-  // استيراد الوظائف من Firebase SDK
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-
-  // إعدادات Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyD6QUk32i4F4SeQhhZrrlxDj8SsVIcAAoE",
-    authDomain: "lyxs-f2b62.firebaseapp.com",
-    projectId: "lyxs-f2b62",
-    storageBucket: "lyxs-f2b62.firebasestorage.app",
-    messagingSenderId: "400754312224",
-    appId: "1:400754312224:web:73d9668718ff3647ed2845",
-    measurementId: "G-06FECZZL9M"
-  };
-
-  // تهيئة Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // وظيفة لجلب البيانات وعرضها
-  async function loadFiles() {
-    const listElement = document.getElementById('filesList');
-    try {
-      const filesCol = collection(db, 'files'); // اسم المجموعة
-      const fileSnapshot = await getDocs(filesCol);
-      fileSnapshot.forEach(doc => {
-        const li = document.createElement('li');
-        li.textContent = JSON.stringify(doc.data()); // عرض البيانات كنص
-        listElement.appendChild(li);
-      });
-    } catch (e) {
-      console.error('خطأ في جلب البيانات:', e);
-    }
-  }
-
-  // استدعاء الدالة عند تحميل الصفحة
-  window.onload = loadFiles;
-</script>
 </body>
 </html>
